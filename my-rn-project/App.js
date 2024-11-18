@@ -2,6 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { creeateBottomTabNavigator } from '@react-navigaton/bottom-tabs';
+import Login from './src/screens/Login'; //agregar login --> stack navigation dentro de HomeMenu creoooo!!
+import Register from './src/screens/Register'; //agregar register --> stack navigation dentro de HomeMenu creoooo!! 
+import Home from './src/screens/Home';
+import Profile from './src/screens/Profile';
+import NewPost from './src/screens/NewPost';
+import Users from './src/screens/Users';
 
 const Tab = creeateBottomTabNavigator();
 

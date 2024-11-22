@@ -24,19 +24,12 @@ export class Login extends Component {
     };
 
     handleSubmit() {
-        const { email, password } = this.state;
-
-        if (!email || !password) {
-            this.setState({ errorMsg: 'Los datos ingresados son incorrectos.' });
-            return
-        };
-
         auth.signInWithEmailAndPassword(email, password)
             .then((response) => {
-                this.setState({ logueado: true })
+                this.setState({ logueado: true, errorMsg: '' })
             })
             .catch(error => {
-                this.setState({ errorMsg: 'Credenciales inválidas.' })
+                this.setState({ errorMsg: 'Error al loguearse: ' + error.message })
             })
     };
 
@@ -67,6 +60,9 @@ export class Login extends Component {
                     onChangeText={text => this.setState({ password: text })}
                     value={this.state.password} />
 
+                {/* {this.state.errorMsg ? <Text style={styles.errorMsg}>{this.state.errorMsg}</Text> : null} */} 
+                {this.state.errorMsg && <Text style={styles.errorMsg}>{this.state.errorMsg}</Text>}
+
                 <TouchableOpacity onPress={() => this.handleSubmit(this.state.email, this.state.password)} style={StyleSheet.button}>
                     <Text style={StyleSheet.text}>Loguearme</Text>
                 </TouchableOpacity>
@@ -79,6 +75,8 @@ export class Login extends Component {
         )
     }
 }
+
+// si no funciona el mensaje de error probar con comentado
 
 export default Login;
 
@@ -120,7 +118,13 @@ const style = StyleSheet.create({
     },
     text: {
         color: '#fff'
-    }
+    },
+    errorMsg: {
+        color: 'red',
+        fontSize: 14,
+        marginBottom: 10,
+        textAlign: 'center',
+      }
 });
 
 

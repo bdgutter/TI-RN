@@ -3,9 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Login from './src/screens/Login'; //agregar login --> stack navigation dentro de HomeMenu creoooo!!
-import Register from './src/screens/Register'; //agregar register --> stack navigation dentro de HomeMenu creoooo!! 
-import Home from './src/screens/Home';
+import Login from './src/screens/Login'; 
+import Register from './src/screens/Register'; 
 import Profile from './src/screens/Profile';
 import NewPost from './src/screens/NewPost';
 import Users from './src/screens/Users';

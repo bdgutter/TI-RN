@@ -4,8 +4,8 @@ import { auth } from '../firebase/config';
 
 export class Login extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -60,7 +60,7 @@ export class Login extends Component {
                     onChangeText={text => this.setState({ password: text })}
                     value={this.state.password} />
 
-                {/* {this.state.errorMsg ? <Text style={styles.errorMsg}>{this.state.errorMsg}</Text> : null} */} 
+                {/* {this.state.errorMsg ? <Text style={styles.errorMsg}>{this.state.errorMsg}</Text> : null} */}
                 {this.state.errorMsg && <Text style={styles.errorMsg}>{this.state.errorMsg}</Text>}
 
                 <TouchableOpacity onPress={() => this.handleSubmit(this.state.email, this.state.password)} style={StyleSheet.button}>
@@ -124,7 +124,7 @@ const style = StyleSheet.create({
         fontSize: 14,
         marginBottom: 10,
         textAlign: 'center',
-      }
+    }
 });
 
 

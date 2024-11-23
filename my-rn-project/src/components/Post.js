@@ -49,6 +49,7 @@ handelNotLike(){
 
     render(){
         const {posts} = this.state
+        const createdAt = new Date(posts.createdAt).toLocaleDateString()
 
         return(
             <View>
@@ -65,7 +66,7 @@ handelNotLike(){
                     </TouchableOpacity>
                 )}
                 <Text>Cantidad de Likes: {this.state.cantidadLikes}</Text>
-                <Text>Fecha de Publicacion: </Text>
+                <Text>Fecha de Publicacion: {createdAt}</Text>
             </View>
         )
 

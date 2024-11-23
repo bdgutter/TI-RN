@@ -1,51 +1,83 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { auth, db } from '../firebase/config';
 
 export default class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            userName: "",
-            password: ""
+            email: '',
+            userName: '',
+            password: '',
+            registered: false,
+            error: '',
         }
     }
 
-    handleSubmit(){
-        console.log("email: ", this.state.email)
-        console.log("userName: ", this.state.userName)
-        console.log("password: ", this.state.password)
+    componentDidMount(){
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                this.props.navigation.navigate("Home")
+            }
+        })
+    }
+
+    register(){
+        const { email, userName, password } = this.state;
+
+        if (!email || !userName || !password) {
+            this.setState({ messageErr: 'No deben quedar campos sin completar' })
+            return;
+        }
+
+        auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+            return db.collection("users").add({
+                email: this.state.email,
+                userName: this.state.userName,
+                createdAt: Date.now()
+            });
+        })
+        .then(() => {
+            this.setState({ registered: true });
+            this.props.navigation.navigate("Login")
+        })
+        .catch((error) => this.setState({ error: "El registro falló", error }))
     }
 
     render() {
+        const { email, userName, password, error } = this.state;
+
         return (
             <View style={styles.container}>
-                <Text>Register</Text>
+                <Text style={styles.title}>Registrarse</Text>
                <TextInput 
                     style={styles.input}
                     keyboardType = 'email-address'
                     placeholder = 'Email'
-                    onChangeText = { text => this.setState({email:text})}
-                    value = {this.state.email} 
+                    onChangeText = { text => this.setState({ email: text })}
+                    value = {email} 
                 />
                 <TextInput 
                     style={styles.input}
-                    keyboardType = 'defualt'
+                    keyboardType = 'default'
                     placeholder = 'UserName'
-                    onChangeText = { text => this.setState({userName:text})}
-                    value = {this.state.userName} 
+                    onChangeText = { text => this.setState({ userName: text })}
+                    value = {userName} 
                 />
                 <TextInput 
                     style={styles.input}
                     keyboardType = 'default'
                     placeholder = 'Password'
                     secureTextEntry = {true}
-                    onChangeText = { text => this.setState({password:text})}
-                    value = {this.state.password} 
+                    onChangeText = { text => this.setState({ password: text })}
+                    value = {password} 
                 />
 
-                <TouchableOpacity onPress={()=> this.handleSubmit()}>
-                    <Text style={styles.texto}>Registrarse</Text>
+                {error ? <Text style={styles.error}>{error}</Text> : null}
+
+                <TouchableOpacity onPress={()=> this.register()}>
+                    <Text style={styles.texto}>Registrarme</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={()=> this.props.navigation.navigate("Login")} style={styles.button}>
@@ -69,7 +101,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 40,
-        color: '#black',
+        color: 'black',
     },
     input: {
         border: "1px solid black",
@@ -87,5 +119,10 @@ const styles = StyleSheet.create({
     },
     texto: {
         color: 'black'
+    },
+    error: {
+        color: 'red',
+        textAlign: 'center',
+        marginBottom: 15
     }
 })

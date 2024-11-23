@@ -25,9 +25,6 @@ export default class HomePage extends Component {
     }
 
     render(){
-<<<<<<< HEAD
-      
-=======
         return(
             <Tab.Navigator screenOptions={{tabBarShowLabel: false, headerShown: false }}>
                 <Tab.Screen 
@@ -52,6 +49,5 @@ export default class HomePage extends Component {
                 />
             </Tab.Navigator>
         )
->>>>>>> bbc864738f4f9c2681148e832c4998adbaa97ac9
     }
 }

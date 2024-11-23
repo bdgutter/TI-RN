@@ -19,28 +19,26 @@ export default class Home extends Component{
                 this.props.navigation.navigate("Login")
             }
         })
+        this.setState({
+            loading: true
+        })
+        db.collection("posts").onSnapshot(
+            docs => {
+                let posts = []
+                docs.forEach(doc => {
+                    posts.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
+                })
+                this.setState({
+                    posts: posts,
+                    loading: false
+                })
+            }
+        )
     }
 
-handleShowPosts = () => {
-    this.setState({
-        loading: true
-    })
-    db.collection("posts").onSnapshot(
-        docs => {
-            let posts = []
-            docs.forEach(doc => {
-                posts.push({
-                    id: doc.id,
-                    data: doc.data()
-                })
-            })
-            this.setState({
-                posts: posts,
-                loading: false
-            })
-        }
-    )
-}
 
     render(){
         return(

@@ -10,8 +10,13 @@ export default class NewPost extends Component{
         }
     }
 
-
-//ver que el usuario este logueado 
+    componentDidMount(){
+        auth.onAuthStateChanged((user) => { 
+            if (!user) {
+                this.props.navigation.navigate("Login")
+            }
+        })
+    }
 
 handleNewPostSubmit(){
     db.collection("posts").add({

@@ -9,8 +9,6 @@ const Tab = creeateBottomTabNavigator();
 
 export default class HomePage extends Component {
     render(){
-        return(
-
-        )
+      
     }
 }

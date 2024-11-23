@@ -23,6 +23,7 @@ handelNotLike(){
     render(){
         const {posts} = this.state
         ////en el pate de likes falta el touchableOpacity donde podes likear y deslikear
+        ////y la cantidad de likes
         return(
             <View>
                 <Text>Posteos</Text>

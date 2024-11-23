@@ -8,6 +8,7 @@ import Register from './src/screens/Register';
 import Profile from './src/screens/Profile';
 import NewPost from './src/screens/NewPost';
 import Users from './src/screens/Users';
+import Home from './src/screens/Home';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

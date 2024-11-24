@@ -35,25 +35,25 @@ export class Login extends Component {
 
     render() {
         return (
-            <View style={StyleSheet.container}>
+            <View style={styles.container}>
 
-                <Text style={StyleSheet.title}>Login</Text>
+                <Text style={styles.title}>Login</Text>
 
-                <Text style={StyleSheet.text}>No tengo cuenta:</Text>
+                <Text style={styles.text}>No tengo cuenta:</Text>
 
-                <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")} style={StyleSheet.button}>
-                    <Text style={StyleSheet.text}>Registrarme</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")} style={styles.button}>
+                    <Text style={styles.text}>Registrarme</Text>
                 </TouchableOpacity>
 
-                <Text style={StyleSheet.text}>Ya tengo cuenta:</Text>
+                <Text style={styles.text}>Ya tengo cuenta:</Text>
 
-                <TextInput style={StyleSheet.field}
+                <TextInput style={styles.field}
                     keyboardType='email-address'
                     placeholder='email'
                     onChangeText={text => this.setState({ email: text })}
                     value={this.state.email} />
 
-                <TextInput style={StyleSheet.field}
+                <TextInput style={styles.field}
                     keyboardType='default'
                     placeholder='password'
                     secureTextEntry={true}
@@ -63,12 +63,12 @@ export class Login extends Component {
                 {/* {this.state.errorMsg ? <Text style={styles.errorMsg}>{this.state.errorMsg}</Text> : null} */}
                 {this.state.errorMsg && <Text style={styles.errorMsg}>{this.state.errorMsg}</Text>}
 
-                <TouchableOpacity onPress={() => this.handleSubmit(this.state.email, this.state.password)} style={StyleSheet.button}>
-                    <Text style={StyleSheet.text}>Loguearme</Text>
+                <TouchableOpacity onPress={() => this.handleSubmit(this.state.email, this.state.password)} style={styles.button}>
+                    <Text style={styles.text}>Loguearme</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => this.props.navigation.navigate("HomeMenu")} style={StyleSheet.button}>
-                    <Text style={StyleSheet.text}>Entrar en la app</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("HomeMenu")} style={styles.button}>
+                    <Text style={styles.text}>Entrar en la app</Text>
                 </TouchableOpacity>
 
             </View>
@@ -80,7 +80,7 @@ export class Login extends Component {
 
 export default Login;
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
@@ -117,7 +117,7 @@ const style = StyleSheet.create({
         color: '#333',
     },
     text: {
-        color: '#fff'
+        color: 'black'
     },
     errorMsg: {
         color: 'red',

@@ -21,26 +21,26 @@ export default class Post extends Component{
         })
     }
 
-handelLike(){
+handleLike(){
     db.collection("posts")
         .doc(this.props.posts.id)
         .update({
-            likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
+            likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
         })
     .then(() => this.setState({
         like: true,
-        cantidadLikes: this.props.posts.data.likes.length
+        cantidadLikes: this.props.posts.data.likes.length + 1
     }))
 }
-handelNotLike(){
+handleNotLike(){
     db.collection("posts")
         .doc(this.props.posts.id)
         .update({
-            likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
+            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
     .then(() => this.setState({
         like: false,
-        cantidadLikes: this.props.posts.data.likes.length
+        cantidadLikes: this.props.posts.data.likes.length - 1
     }))
 }
 
@@ -53,16 +53,16 @@ handelNotLike(){
                 <Text>Posteos</Text>
                 <Text>Usuario: {posts.data.owner}</Text>
                 <Text>Descripcion: {posts.data.text}</Text>
-                {this.state.like ? (
-                    <TouchableOpacity onPress={() => this.handelLike()}>
+                {like ? (
+                    <TouchableOpacity onPress={() => this.handleLike()}>
                         <Text>Me gusta</Text>
                     </TouchableOpacity>
                 ) : (
-                    <TouchableOpacity onPress={() => this.handelNotLike()}>
+                    <TouchableOpacity onPress={() => this.handleNotLike()}>
                         <Text>No me gusta mas</Text>
                     </TouchableOpacity>
                 )}
-                <Text>Cantidad de Likes: {this.state.cantidadLikes}</Text>
+                <Text>Cantidad de Likes: {cantidadLikes}</Text>
                 <Text>Fecha de Publicacion: {createdAt}</Text> 
             </View>
         )

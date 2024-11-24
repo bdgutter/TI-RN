@@ -6,8 +6,7 @@ export default class NewPost extends Component{
     constructor(props){
         super(props)
         this.state = {
-            text: "",
-            email: ""
+            text: ""
         }
     }
 
@@ -20,18 +19,16 @@ export default class NewPost extends Component{
     }
 
 handleNewPostSubmit(){
-    const email = auth.currentUser;
-    if(email) {
-        db.collection("posts").add({
-            text: this.state.text,
-            owner: auth.currentUser.email,
-            likes: [],
-            createdAt: Date.now()
-        }).then( () => {
-            thi.setState({text: ""});
-            this.props.navigation.navigate("Home")
-        }).catch(e => console.log("Error en el posteo: ", e))
-    }    
+    db.collection("posts").add({
+        text: this.state.text,
+        owner: auth.currentUser.email,
+        likes: [],
+        createdAt: Date.now()
+    }).then( () => {
+        this.setState({text: ""});
+        this.props.navigation.navigate("Home")
+    }).catch(e => console.log("Error en el posteo: ", e))
+    
 }
 
     render(){

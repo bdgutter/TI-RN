@@ -8,7 +8,7 @@ export default class Post extends Component{
         super(props)
         this.state = {
             posts: this.props.posts,
-            like: false,
+            like: this.props.posts.data.likes.includes(auth.currentUser.email),
             cantidadLikes: this.props.posts.data.likes.length
         }
     }
@@ -19,28 +19,25 @@ export default class Post extends Component{
                 this.props.navigation.navigate("Login")
             }
         })
-        if(this.props.posts.data.likes.includes(auth.currentUser.email)){
-            this.setState({
-                like: true
-            })
-        }
     }
 
-
-
 handelLike(){
-    db.collection("posts").doc(this.props.posts.id).update({
-        likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
-    })
+    db.collection("posts")
+        .doc(this.props.posts.id)
+        .update({
+            likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
+        })
     .then(() => this.setState({
         like: true,
         cantidadLikes: this.props.posts.data.likes.length
     }))
 }
 handelNotLike(){
-    db.collection("posts").doc(this.props.posts.id).update({
-        likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
-    })
+    db.collection("posts")
+        .doc(this.props.posts.id)
+        .update({
+            likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
+        })
     .then(() => this.setState({
         like: false,
         cantidadLikes: this.props.posts.data.likes.length
@@ -48,8 +45,8 @@ handelNotLike(){
 }
 
     render(){
-        const {posts} = this.state
-        const createdAt = new Date(posts.createdAt).toLocaleDateString()
+        const {posts, like, cantidadLikes} = this.state
+        const createdAt = new Date(posts.data.createdAt).toLocaleDateString()
 
         return(
             <View>
@@ -69,7 +66,5 @@ handelNotLike(){
                 <Text>Fecha de Publicacion: {createdAt}</Text> 
             </View>
         )
-
     }
-
 }

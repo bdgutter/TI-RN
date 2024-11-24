@@ -17,7 +17,7 @@ export class Login extends Component {
 
     componentDidMount() {
         auth.onAuthStateChanged((user) => {
-            if (user) {
+            if (user) { 
                 this.props.navigation.navigate("HomeMenu")
             }
         })

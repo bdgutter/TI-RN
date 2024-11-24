@@ -18,11 +18,16 @@ export class Profile extends Component {
     componentDidMount() {
         db.collection('users')
             .where('email', '==', auth.currentUser.email)
-            .onSnapshot(snapshot => {
-                if (true) {
-                    const userDoc = snapshot.docs[0];
-                    const userData = userDoc.data();
-                    this.setState({ userName: userData.username });
+            .onSnapshot((docs) => {
+                let user = [];
+                docs.forEach((doc) => {
+                    user.push({
+                        id: doc.id,
+                        data: doc.data(),
+                    })
+                })
+                if (user.length > 0) {
+                    this.setState({ userName: user[0].data.userName });
                 }
             });
 
@@ -58,11 +63,12 @@ export class Profile extends Component {
     handleLogout = () => {
         auth.signOut()
             .then(() => {
-                this.props.navigation.navigate('Login')
+                console.log("Cerraste sesion");
+                this.props.navigation.navigate("Login");
             })
             .catch(error => {
-                console.log(error)
-            });
+                console.log(error);
+            })
     };
 
 
@@ -76,7 +82,7 @@ export class Profile extends Component {
                     <Text style={styles.infoText}>Cantidad de posteos: {this.state.posts.length}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={this.handleLogout()}>
+                <TouchableOpacity style={styles.button} onPress={this.handleLogout}>
                     <Text style={styles.text}>Cerrar sesión</Text>
                 </TouchableOpacity>
 
@@ -86,17 +92,18 @@ export class Profile extends Component {
                     <FlatList
                         data={this.state.posts}
                         keyExtractor={(item) => item.id}
-                        renderItem={({ item }) => {
-                            <Post
-                                posts={item}
-                            />,
-                            <TouchableOpacity onPress={() => this.handleDeletePost(item.id)} style={styles.button}>
-                                <Text style={styles.text}>Eliminar post</Text>
-                            </TouchableOpacity>
-                        }}
+                        renderItem={({ item }) => (
+                            <View>
+                                <Post posts={item}/>
+
+                                <TouchableOpacity style={styles.button} onPress={() => this.handleDeletePost(item.id)}>
+                                    <Text style={styles.text}>Eliminar post</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )}
                     />
                 )}
-                
+
             </View>
         )
     }
@@ -110,13 +117,13 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
         paddingHorizontal: 10,
         marginTop: 20,
     },
     infoContainer: {
         marginBottom: 20,
         padding: 15,
+        paddingHorizontal: 30,
         backgroundColor: '#fff',
         borderRadius: 10,
         shadowColor: '#000',
@@ -124,15 +131,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 3,
-      },
+    },
     button: {
-        backgroundColor: '#28a745',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius: 4,
-        borderWidth: 1,
-        borderStyle: 'solid',
+        backgroundColor: '#989898',
+        borderRadius: 5,
+        padding: 10,
+        alignItems: 'center',
+        marginTop: 10
     },
     title: {
         fontSize: 30,
@@ -148,7 +153,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#666',
         marginBottom: 5,
-      },
+    },
     errorMsg: {
         color: 'red',
         fontSize: 14,

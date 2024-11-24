@@ -17,19 +17,29 @@ export class Login extends Component {
 
     componentDidMount() {
         auth.onAuthStateChanged((user) => {
-            if (user) { 
-                this.props.navigation.navigate("HomeMenu")
+            if (user) {
+                this.props.navigation.navigate("HomePage")
             }
         })
     };
 
     handleSubmit() {
+        const { email, password } = this.state;
+
         auth.signInWithEmailAndPassword(email, password)
             .then((response) => {
                 this.setState({ logueado: true, errorMsg: '' })
             })
             .catch(error => {
-                this.setState({ errorMsg: 'Error al loguearse: ' + error.message })
+                if (!email || !password) {
+                    this.setState({ errorMsg: 'Complete todos los campos' })
+                } else if (!email.includes("@")) {
+                    this.setState({ errorMsg: "Email mal escrito" });
+                } else if (password.length < 6) {
+                    this.setState({ errorMsg: "La contraseña debe tener mínimo 6 caracteres" })
+                } else {
+                    this.setState({ errorMsg: "Email o contraseña incorrectos" })
+                }
             })
     };
 
@@ -42,33 +52,30 @@ export class Login extends Component {
                 <Text style={styles.text}>No tengo cuenta:</Text>
 
                 <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")} style={styles.button}>
-                    <Text style={styles.text}>Registrarme</Text>
+                    <Text style={styles.buttonText}>Registrarme</Text>
                 </TouchableOpacity>
 
                 <Text style={styles.text}>Ya tengo cuenta:</Text>
 
-                <TextInput style={styles.field}
-                    keyboardType='email-address'
-                    placeholder='email'
-                    onChangeText={text => this.setState({ email: text })}
-                    value={this.state.email} />
+                <View style={styles.inputsContainer}>
+                    <TextInput style={styles.field}
+                        keyboardType='email-address'
+                        placeholder='email'
+                        onChangeText={text => this.setState({ email: text })}
+                        value={this.state.email} />
 
-                <TextInput style={styles.field}
-                    keyboardType='default'
-                    placeholder='password'
-                    secureTextEntry={true}
-                    onChangeText={text => this.setState({ password: text })}
-                    value={this.state.password} />
+                    <TextInput style={styles.field}
+                        keyboardType='default'
+                        placeholder='password'
+                        secureTextEntry={true}
+                        onChangeText={text => this.setState({ password: text })}
+                        value={this.state.password} />
+                </View>
 
-                {/* {this.state.errorMsg ? <Text style={styles.errorMsg}>{this.state.errorMsg}</Text> : null} */}
                 {this.state.errorMsg && <Text style={styles.errorMsg}>{this.state.errorMsg}</Text>}
 
                 <TouchableOpacity onPress={() => this.handleSubmit(this.state.email, this.state.password)} style={styles.button}>
-                    <Text style={styles.text}>Loguearme</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => this.props.navigation.navigate("HomeMenu")} style={styles.button}>
-                    <Text style={styles.text}>Entrar en la app</Text>
+                    <Text style={styles.buttonText}>Loguearme</Text>
                 </TouchableOpacity>
 
             </View>
@@ -76,38 +83,34 @@ export class Login extends Component {
     }
 }
 
-// si no funciona el mensaje de error probar con comentado
 
 export default Login;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '100%',
-        backgroundColor: '#fff',
-        alignItems: 'center',
+        padding: 20,
         justifyContent: 'center',
-        paddingHorizontal: 10,
-        marginTop: 20,
+        backgroundColor: '#dfdfdf',
+        margin: 20
+    },
+    inputsContainer: {
+        marginTop: 10,
+        marginBottom: 10
     },
     field: {
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderStyle: 'solid',
+        border: "1px solid black",
         borderRadius: 6,
-        marginVertical: 10
+        padding: 7,
+        marginBottom: 5
     },
     button: {
-        backgroundColor: '#28a745',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius: 4,
-        borderWidth: 1,
-        borderStyle: 'solid',
+        backgroundColor: '#989898',
+        borderRadius: 5,
+        padding: 10,
+        width: "100%",
+        alignItems: 'center',
+        marginTop: 10
     },
     title: {
         fontSize: 30,
@@ -117,6 +120,10 @@ const styles = StyleSheet.create({
         color: '#333',
     },
     text: {
+        color: 'black',
+        marginTop: 10
+    },
+    buttonText: {
         color: 'black'
     },
     errorMsg: {

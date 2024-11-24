@@ -7,6 +7,7 @@ export default class NewPost extends Component{
         super(props)
         this.state = {
             text: "",
+            email: ""
         }
     }
 
@@ -22,11 +23,12 @@ handleNewPostSubmit(){
     db.collection("posts").add({
         text: this.state.text,
         owner: auth.currentUser.email,
-        likes: []
-        //dia
-    }).then(
-        console.log("se creo un nuevo posteo")
-    ).catch(e => console.log(e))
+        likes: [],
+        createdAt: Date.now()
+    }).then( () => {
+        thi.setState({text: ""});
+        this.props.navigation.navigate("Home")
+    }).catch(e => console.log(e))
 }
 
     render(){

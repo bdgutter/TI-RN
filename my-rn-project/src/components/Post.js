@@ -9,7 +9,7 @@ export default class Post extends Component{
         this.state = {
             posts: this.props.posts,
             like: false,
-            cantidadLikes: this.props.item.data.likes.length
+            cantidadLikes: this.props.posts.data.likes.length
         }
     }
 
@@ -19,7 +19,7 @@ export default class Post extends Component{
                 this.props.navigation.navigate("Login")
             }
         })
-        if(this.props.item.data.likes.includes(auth.currentUser.email)){
+        if(this.props.posts.data.likes.includes(auth.currentUser.email)){
             this.setState({
                 like: true
             })
@@ -29,27 +29,27 @@ export default class Post extends Component{
 
 
 handelLike(){
-    db.collection("posts").doc(this.props.item.id).update({
-        likes: firebase.firestore.FieldValue.arrayUnion(this.props.item.data.owner)
+    db.collection("posts").doc(this.props.posts.id).update({
+        likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
     })
     .then(() => this.setState({
         like: true,
-        cantidadLikes: this.props.item.data.likes.length
+        cantidadLikes: this.props.posts.data.likes.length
     }))
 }
 handelNotLike(){
-    db.collection("posts").doc(this.props.item.id).update({
-        likes: firebase.firestore.FieldValue.arrayUnion(this.props.item.data.owner)
+    db.collection("posts").doc(this.props.posts.id).update({
+        likes: firebase.firestore.FieldValue.arrayUnion(this.props.posts.data.owner)
     })
     .then(() => this.setState({
         like: false,
-        cantidadLikes: this.props.item.data.likes.length
+        cantidadLikes: this.props.posts.data.likes.length
     }))
 }
 
     render(){
         const {posts} = this.state
-        //const createdAt = new Date(posts.createdAt).toLocaleDateString()
+        const createdAt = new Date(posts.createdAt).toLocaleDateString()
 
         return(
             <View>
@@ -66,7 +66,7 @@ handelNotLike(){
                     </TouchableOpacity>
                 )}
                 <Text>Cantidad de Likes: {this.state.cantidadLikes}</Text>
-                {/* <Text>Fecha de Publicacion: {createdAt}</Text> */}
+                <Text>Fecha de Publicacion: {createdAt}</Text> 
             </View>
         )
 

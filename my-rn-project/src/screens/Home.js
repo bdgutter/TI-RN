@@ -31,7 +31,8 @@ export default class Home extends Component {
                     id: doc.id,
                     data: doc.data(),
                 });
-            }).this.setState({
+            });
+            this.setState({
                 posts: postArray,
                 isLoading: false
             })

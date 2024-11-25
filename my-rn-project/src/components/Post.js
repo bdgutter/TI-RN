@@ -46,17 +46,6 @@ handleNotLike(){
     }))
 }
 
-handleDeletePost = () => {
-    db.collection("posts")
-      .doc(this.props.posts.id)
-      .delete()
-      .then(() => {
-        console.log("Posteo eliminado!")
-      }).catch((e) => {
-        console.log("Error al eliminarl el Posteo: ", e)
-      })
-}
-
 
     render(){
         const {posts, like, cantidadLikes} = this.state
@@ -79,12 +68,6 @@ handleDeletePost = () => {
                         </TouchableOpacity>
                     )}
                     <Text style={styles.text}>Cantidad de likes: {cantidadLikes}</Text>
-                </View>
-
-                <View>
-                    <TouchableOpacity onPress={() => this.handleDeletePost()}>
-                        
-                    </TouchableOpacity>
                 </View>
             </View>
         )

@@ -30,7 +30,7 @@ handleLike(){
         })
     .then(() => this.setState({
         like: true,
-        cantidadLikes: this.props.posts.data.likes.length + 1
+        cantidadLikes: this.props.posts.data.likes.length
     }))
 }
 
@@ -42,7 +42,7 @@ handleNotLike(){
         })
     .then(() => this.setState({
         like: false,
-        cantidadLikes: this.props.posts.data.likes.length - 1
+        cantidadLikes: this.props.posts.data.likes.length
     }))
 }
 

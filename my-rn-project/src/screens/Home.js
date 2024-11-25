@@ -23,7 +23,6 @@ export default class Home extends Component {
             loading: true
         })
         
-        ////deberia ir en Post???
         db.collection("posts").orderBy("createdAt", "desc").onSnapshot((docs) => {
             let postArray = [];
             docs.forEach((doc) => {
@@ -34,7 +33,7 @@ export default class Home extends Component {
             });
             this.setState({
                 posts: postArray,
-                isLoading: false
+                loading: false
             })
         })
     }

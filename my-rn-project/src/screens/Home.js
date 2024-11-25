@@ -48,10 +48,10 @@ export default class Home extends Component {
                     {!this.state.loading && (
                         <FlatList
                             data={this.state.posts}
-                            keyExtractor={(post) => post.id}
+                            keyExtractor={(item) => item.id}
                             renderItem={({ item }) => (
                                 <View style={styles.postContainer2}>
-                                    <Post item={item} />
+                                    <Post posts={item} />
                                 </View>
                             )}
                         />

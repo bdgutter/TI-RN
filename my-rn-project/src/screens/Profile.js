@@ -57,31 +57,17 @@ export class Profile extends Component {
         db.collection('posts')
             .doc(id).delete()
             .then(() => {
-                console.log('se eliminó el post')
+                console.log('Se eliminó el post')
             })
             .catch((error) => {
                 console.log(error)
             });
     };
-    // handleDeletePost = () => {
-    //     const { posts } = this.state
-
-    //     db.collection('posts')
-    //         .doc(posts.id)
-    //         .update({ posts: firebase.firestore.FieldValue.arrayRemove(posts.id) })
-    //         .then(() => {
-    //             const updatedPosts = this.state.posts.filter(post => post.id !== posts.id);
-    //             this.setState({ posts: updatedPosts });
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         });
-    // };
 
     handleLogout = () => {
         auth.signOut()
             .then(() => {
-                console.log("Cerraste sesion");
+                console.log("Cerraste sesión");
                 this.props.navigation.navigate("Login");
             })
             .catch(error => {
@@ -162,6 +148,7 @@ const styles = StyleSheet.create({
         paddingVertical: 3
     },
     postContainer1: { 
+        flex: 1,
         width: '90%',                
         borderWidth: 1.5,
         borderRadius: 10,
@@ -169,7 +156,7 @@ const styles = StyleSheet.create({
         paddingVertical: 25,
         paddingHorizontal: 25,
         backgroundColor: '#ffb662',
-        marginTop: 20,
+        marginVertical: 20,
     },
     postContainer2: {
         marginBottom: 20,
@@ -182,7 +169,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 3, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        alignItems: 'center'
+        alignItems: 'center', 
+        textAlign: 'center'
     },
     button: {
         backgroundColor: '#ffa155',

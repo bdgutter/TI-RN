@@ -16,10 +16,8 @@ export class Login extends Component {
     };
 
     componentDidMount() {
-        console.log("pruebaa")
         auth.onAuthStateChanged((user) => {
             if (user) {
-                console.log(user)
                 this.props.navigation.navigate("HomePage")
             }
         })

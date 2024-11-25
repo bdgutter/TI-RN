@@ -42,7 +42,7 @@ handleNotLike(){
 
     render(){
         const {posts, like, cantidadLikes} = this.state
-        const createdAt = new Date(posts.data.createdAt).toLocaleDateString() /////////////////
+        const createdAt = new Date(posts.data.createdAt).toLocaleDateString()
         
         return(
            <View style={styles.container}>

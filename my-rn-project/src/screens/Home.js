@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: 'black',
         paddingHorizontal: 10,
-        backgroundColor: '#ffb662'
+        marginBottom: 20,
+        backgroundColor: '#ffb662',
     },
     postContainer2: {
         marginTop: 20,
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 3, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
+        alignSelf: 'center'
     },
     title: {
         fontSize: 30,

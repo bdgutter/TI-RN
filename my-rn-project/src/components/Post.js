@@ -1,78 +1,77 @@
-// import React, { Component } from "react";
-// import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-// import { auth, db } from '../firebase/config';
-// import firebase from "firebase";
-// import AntDesign from '@expo/vector-icons/AntDesign';
+import React, { Component } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { auth, db } from '../firebase/config';
+import firebase from "firebase";
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-// export default class Post extends Component{
-//     constructor(props){
-//         super(props)
-//         this.state = {
-//             posts: this.props.posts,
-//             like: this.props.posts.data.likes.includes(auth.currentUser.email),
-//             cantidadLikes: this.props.posts.data.likes.length
-//         }
-//     }
+export default class Post extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            posts: this.props.posts,
+            like: this.props.posts.data.likes.includes(auth.currentUser.email),
+            cantidadLikes: this.props.posts.data.likes.length
+        }
+    }
 
-//     componentDidMount(){
-//         auth.onAuthStateChanged((user) => { 
-//             if (!user) {
-//                 this.props.navigation.navigate("Login")
-//             }
-//         })
-//     }
+    componentDidMount(){
+        auth.onAuthStateChanged((user) => { 
+            if (!user) {
+                this.props.navigation.navigate("Login")
+            }
+        })
+    }
 
-// handleLike(){
-//     db.collection("posts")
-//         .doc(this.props.posts.id)
-//         .update({
-//             likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-//         })
-//     .then(() => this.setState({
-//         like: true,
-//         cantidadLikes: this.props.posts.data.likes.length + 1
-//     }))
-// }
-// handleNotLike(){
-//     db.collection("posts")
-//         .doc(this.props.posts.id)
-//         .update({
-//             likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
-//         })
-//     .then(() => this.setState({
-//         like: false,
-//         cantidadLikes: this.props.posts.data.likes.length - 1
-//     }))
-// }
+handleLike(){
+    db.collection("posts")
+        .doc(this.props.posts.id)
+        .update({
+           likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+        })
+    .then(() => this.setState({
+        like: true,
+        cantidadLikes: this.props.posts.data.likes.length + 1
+    }))
+}
 
-//     render(){
-//         const {posts, like, cantidadLikes} = this.state
-//         const createdAt = new Date(posts.data.createdAt).toLocaleDateString()
+handleNotLike(){
+    db.collection("posts")
+      .doc(this.props.posts.id)
+      .update({
+            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
+        })
+    .then(() => this.setState({
+        like: false,
+        cantidadLikes: this.props.posts.data.likes.length - 1
+    }))
+}
 
-//         return(
-//             <View>
-
-//                 <Text style={styles.text}>Usuario: {posts.data ? posts.data.owner : 'Desconocido'}</Text>
-//                 <Text style={styles.text}>Descripción: {posts.data ? posts.data.text : 'Sin descripción'}</Text>
-//                 <Text style={styles.text}>Fecha de publicación: {createdAt}</Text>
-
-//                 <View style={styles.likes}>
-//                     {like ? (
-//                         <TouchableOpacity onPress={() => this.handleNotLike()}>
-//                             <AntDesign name="dislike1" size={18} color="black" />
-//                         </TouchableOpacity>
-//                     ) : (
-//                         <TouchableOpacity onPress={() => this.handleLike()}>
-//                             <AntDesign name="like1" size={18} color="black" />
-//                         </TouchableOpacity>
-//                     )}
-//                     <Text style={styles.text}>Cantidad de likes: {cantidadLikes}</Text>
-//                 </View>
-
-//             </View>
-// //         )
-//     }
-// }
+    render(){
+        const {posts, like, cantidadLikes} = this.state
+        const createdAt = new Date(posts.data.createdAt).toLocaleDateString() /////////////////
+        
+        return(
+           <View>
+                <Text style={styles.text}>Usuario: {posts.data ? posts.data.owner : 'Desconocido'}</Text>
+                <Text style={styles.text}>Descripción: {posts.data ? posts.data.text : 'Sin descripción'}</Text>
+                <Text style={styles.text}>Fecha de publicación: {createdAt}</Text>
+            
+                <View style={styles.likes}>
+                    {like ? (
+                        <TouchableOpacity onPress={() => this.handleNotLike()}>
+                            <AntDesign name="dislike1" size={18} color="black" />
+                        </TouchableOpacity>
+                        ) : (
+                        <TouchableOpacity onPress={() => this.handleLike()}>
+                            <AntDesign name="like1" size={18} color="black" />
+                        </TouchableOpacity>
+                    )}
+                    <Text style={styles.text}>Cantidad de likes: {cantidadLikes}</Text>
+                </View>
+            </View>
+        )
+    }
+}
 
 
 const styles = StyleSheet.create({

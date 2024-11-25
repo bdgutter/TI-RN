@@ -19,18 +19,18 @@ export default class NewPost extends Component {
         })
     }
 
-    handleNewPostSubmit() {
-        db.collection("posts").add({
-            text: this.state.text,
-            owner: auth.currentUser.email,
-            likes: [],
-            createdAt: Date.now()
-        }).then(() => {
-            this.setState({ text: "" });
-            this.props.navigation.navigate("Home")
-        }).catch(e => console.log("Error en el posteo: ", e))
+handleNewPostSubmit() {
+    db.collection("posts").add({
+        text: this.state.text,
+        owner: auth.currentUser.email,
+        likes: [],
+        createdAt: Date.now()
+    }).then(() => {
+        this.setState({ text: "" });
+        this.props.navigation.navigate("Home")
+    }).catch(e => console.log("Error en el posteo: ", e))
 
-    }
+}
 
     render() {
         return (

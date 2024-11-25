@@ -22,21 +22,20 @@ export default class Home extends Component {
         this.setState({
             loading: true
         })
-        db.collection("posts").onSnapshot(
-            docs => {
-                let posts = []
-                docs.forEach(doc => {
-                    posts.push({
-                        id: doc.id,
-                        data: doc.data()
-                    })
-                })
-                this.setState({
-                    posts: posts,
-                    loading: false
-                })
-            }
-        )
+        
+        ////deberia ir en Post???
+        db.collection("posts").orderBy("createdAt", "desc").onSnapshot((docs) => {
+            let postArray = [];
+            docs.forEach((doc) => {
+                postArray.push({
+                    id: doc.id,
+                    data: doc.data(),
+                });
+            }).this.setState({
+                posts: postArray,
+                isLoading: false
+            })
+        })
     }
 
 
@@ -62,6 +61,7 @@ export default class Home extends Component {
     }
 
 }
+
 
 const styles = StyleSheet.create({
     container: {

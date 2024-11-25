@@ -17,18 +17,13 @@ export default class Register extends Component {
     componentDidMount(){
         auth.onAuthStateChanged(user => {
             if (user) {
-                this.props.navigation.navigate("Home")
+                this.props.navigation.navigate("HomePage")
             }
         })
     }
 
     register(){
         const { email, userName, password } = this.state;
-
-        if (!email || !userName || !password) {
-            this.setState({ messageErr: 'No deben quedar campos sin completar' })
-            return;
-        }
 
         auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
@@ -42,15 +37,26 @@ export default class Register extends Component {
             this.setState({ registered: true });
             this.props.navigation.navigate("Login")
         })
-        .catch((error) => this.setState({ error: "El registro falló", error }))
+        .catch((error) => {
+            if (!email || !userName || !password) {
+                this.setState({ error: 'Complete todos los campos' })
+            } else if (!email.includes("@")) {
+                this.setState({ error: "Email mal escrito" });
+            } else if (password.length < 6) {
+                this.setState({ error: "La contraseña debe tener mínimo 6 caracteres" })
+            } else {
+                this.setState({ error: "Email o contraseña incorrectos" })
+            }
+        })
     }
 
     render() {
         const { email, userName, password, error } = this.state;
+        // const formCompleto = email === "" || password === "" || userName === "";
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Registrarse</Text>
+                <Text style={styles.title}>REGISTRO</Text>
                <TextInput 
                     style={styles.input}
                     keyboardType = 'email-address'
@@ -76,7 +82,7 @@ export default class Register extends Component {
 
                 {error ? <Text style={styles.error}>{error}</Text> : null}
 
-                <TouchableOpacity onPress={()=> this.register()}>
+                <TouchableOpacity onPress={()=> this.register()} style={styles.button}>
                     <Text style={styles.texto}>Registrarme</Text>
                 </TouchableOpacity>
 

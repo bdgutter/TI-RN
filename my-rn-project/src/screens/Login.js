@@ -47,7 +47,7 @@ export class Login extends Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.title}>Login</Text>
+                <Text style={styles.title}>LOGIN</Text>
 
                 <Text style={styles.text}>No tengo cuenta:</Text>
 

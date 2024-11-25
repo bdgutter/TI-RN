@@ -52,7 +52,7 @@ handleNotLike(){
         const createdAt = new Date(posts.data.createdAt).toLocaleDateString() /////////////////
         
         return(
-           <View>
+           <View style={styles.container}>
                 <Text style={styles.text}>Usuario: {posts.data ? posts.data.owner : 'Desconocido'}</Text>
                 <Text style={styles.text}>Descripción: {posts.data ? posts.data.text : 'Sin descripción'}</Text>
                 <Text style={styles.text}>Fecha de publicación: {createdAt}</Text>
@@ -76,9 +76,21 @@ handleNotLike(){
 
 
 const styles = StyleSheet.create({
+    postContainer: {
+        flex: 1, 
+        backgroundColor: 'white',
+        padding: 16,
+        marginBottom: 16,
+        borderRadius: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+    },
     likes: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between'
     },
     field: {
         border: "1.5px solid black",
@@ -107,7 +119,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'black',
-        margin: 5
+        marginBottom: 8, 
+        fontSize: 16,
+        flexWrap: 'wrap'
     },
     buttonText: {
         color: 'black',

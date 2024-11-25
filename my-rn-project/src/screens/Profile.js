@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',              
         justifyContent: 'space-between',    
         flexWrap: 'wrap',                  
-        width: '90%',                     
+        width: '100%',                     
         borderWidth: 1.5,
         borderRadius: 10,
         borderColor: 'black',
@@ -180,7 +180,8 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     postContainer2: {
-        width: '30%', 
+        flex: 1,
+        width: '45%', 
         marginTop: 10,
         marginBottom: 20,
         marginHorizontal: 5,
@@ -192,6 +193,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 3, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     columnWrapperStyle: {
         justifyContent: 'space-between',  

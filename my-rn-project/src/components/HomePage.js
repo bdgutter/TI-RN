@@ -5,15 +5,11 @@ import Profile from '../screens/Profile';
 import NewPost from '../screens/NewPost';
 import Users from '../screens/Users'
 import { auth } from '../firebase/config'
-import { Entypo, FontAwesome, FontAwesome6 } from '@expo/vector-icons';
+import { Entypo, FontAwesome, AntDesign } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
 export default class HomePage extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount(){
         auth.onAuthStateChanged((user) => { 
@@ -39,7 +35,7 @@ export default class HomePage extends Component {
                 <Tab.Screen 
                     name = "NewPost"
                     component = {NewPost}
-                    options = { {tabBarIcon: () => <FontAwesome6 name="newPost" size={24} color="black" />} }
+                    options = { {tabBarIcon: () => <AntDesign name="plussquare" size={24} color="black" />} }
                 />
                 <Tab.Screen 
                     name = "Users"

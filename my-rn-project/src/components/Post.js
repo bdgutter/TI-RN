@@ -50,8 +50,8 @@
 //         const createdAt = new Date(posts.data.createdAt).toLocaleDateString()
 
 //         return(
-//             <View style={styles.container}>
-                
+//             <View>
+
 //                 <Text style={styles.text}>Usuario: {posts.data ? posts.data.owner : 'Desconocido'}</Text>
 //                 <Text style={styles.text}>Descripción: {posts.data ? posts.data.text : 'Sin descripción'}</Text>
 //                 <Text style={styles.text}>Fecha de publicación: {createdAt}</Text>
@@ -75,4 +75,48 @@
 // }
 
 
-// PEGAR ACÁ CÓDIGO CSS + ctrl derecho --> dar formato al texto
+const styles = StyleSheet.create({
+    likes: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    field: {
+        border: "1.5px solid black",
+        borderRadius: 6,
+        padding: 7,
+        marginBottom: 5,
+        backgroundColor: 'white',
+    },
+    button: {
+        backgroundColor: '#ffa155',
+        borderRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        padding: 10,
+        alignItems: 'center',
+        margin: 10,
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin: 40,
+        color: '#black',
+    },
+    text: {
+        color: 'black',
+        margin: 5
+    },
+    buttonText: {
+        color: 'black',
+        fontWeight: 'bold',
+    },
+    errorMsg: {
+        color: 'red',
+        fontSize: 14,
+        margin: 10,
+        textAlign: 'center',
+    }
+});

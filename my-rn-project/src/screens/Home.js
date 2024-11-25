@@ -63,4 +63,41 @@ export default class Home extends Component {
 
 }
 
-// PEGAR ACÁ CÓDIGO CSS + ctrl derecho --> dar formato al texto
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        width: '100%',
+        backgroundColor: '#ffd4a2',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+    },
+    postContainer1: {
+        flexDirection: 'row',
+        width: '100%',
+        borderWidth: 1.5,
+        borderRadius: 10,
+        borderColor: 'black',
+        paddingHorizontal: 10,
+        backgroundColor: '#ffb662'
+    },
+    postContainer2: {
+        marginTop: 20,
+        marginBottom: 20,
+        marginHorizontal: 5,
+        padding: 15,
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 3, height: 5 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin: 40,
+        color: '#black',
+    },
+})

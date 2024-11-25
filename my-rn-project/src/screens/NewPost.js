@@ -52,4 +52,47 @@ export default class NewPost extends Component {
     }
 }
 
-// PEGAR ACÁ CÓDIGO CSS + ctrl derecho --> dar formato al texto
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        width: '100%',
+        backgroundColor: '#ffd4a2',
+        alignItems: 'center',
+        paddingHorizontal: 10,
+    },
+    inputsContainer: {
+        width: '70%',
+        marginTop: '10%'
+    },
+    field: {
+        border: "1.5px solid black",
+        borderRadius: 6,
+        padding: 50,
+        marginBottom: 5,
+        backgroundColor: 'white',
+        textAlign: 'center',
+    },
+    button: {
+        backgroundColor: '#ffa155',
+        borderRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        padding: 10,
+        alignItems: 'center',
+        margin: 10,
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        margin: 40,
+        color: '#black',
+    },
+    buttonText: {
+        color: 'black',
+        fontWeight: 'bold',
+        paddingTop: 5
+    },
+});

@@ -47,26 +47,18 @@ export class Login extends Component {
         return (
             <View style={styles.container}>
 
-                <Text style={styles.title}>LOGIN</Text>
-
-                <Text style={styles.text}>No tengo cuenta:</Text>
-
-                <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")} style={styles.button}>
-                    <Text style={styles.buttonText}>Registrarme</Text>
-                </TouchableOpacity>
-
-                <Text style={styles.text}>Ya tengo cuenta:</Text>
+                <Text style={styles.title}>Login</Text>
 
                 <View style={styles.inputsContainer}>
                     <TextInput style={styles.field}
                         keyboardType='email-address'
-                        placeholder='email'
+                        placeholder='Email'
                         onChangeText={text => this.setState({ email: text })}
                         value={this.state.email} />
 
                     <TextInput style={styles.field}
                         keyboardType='default'
-                        placeholder='password'
+                        placeholder='Password'
                         secureTextEntry={true}
                         onChangeText={text => this.setState({ password: text })}
                         value={this.state.password} />
@@ -76,6 +68,10 @@ export class Login extends Component {
 
                 <TouchableOpacity onPress={() => this.handleSubmit(this.state.email, this.state.password)} style={styles.button}>
                     <Text style={styles.buttonText}>Loguearme</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => this.props.navigation.navigate("Register")} style={styles.button}>
+                    <Text style={styles.buttonText}>No tengo cuenta</Text>
                 </TouchableOpacity>
 
             </View>
@@ -89,49 +85,51 @@ export default Login;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        justifyContent: 'center',
-        backgroundColor: '#dfdfdf',
-        margin: 20
+        width: '100%',
+        backgroundColor: '#ffd4a2',
+        alignItems: 'center',
+        paddingHorizontal: 10,
     },
     inputsContainer: {
-        marginTop: 10,
-        marginBottom: 10
+        width: '50%',
     },
     field: {
-        border: "1px solid black",
+        border: "1.5px solid black",
         borderRadius: 6,
         padding: 7,
-        marginBottom: 5
+        marginBottom: 5,
+        backgroundColor: 'white',
     },
     button: {
-        backgroundColor: '#989898',
+        backgroundColor: '#ffa155',
         borderRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
         padding: 10,
-        width: "100%",
         alignItems: 'center',
-        marginTop: 10
+        margin: 10,
     },
     title: {
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: 40,
-        color: '#333',
+        margin: 40,
+        color: '#black',
     },
     text: {
         color: 'black',
-        marginTop: 10
+        marginTop: 30
     },
     buttonText: {
-        color: 'black'
+        color: 'black',
+        fontWeight: 'bold',
     },
     errorMsg: {
         color: 'red',
         fontSize: 14,
-        marginBottom: 10,
+        margin: 10,
         textAlign: 'center',
     }
 });
-
-

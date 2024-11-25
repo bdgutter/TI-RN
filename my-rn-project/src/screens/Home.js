@@ -4,8 +4,8 @@ import { FlatList } from "react-native";
 import { auth, db } from '../firebase/config'
 import Post from "../components/Post";
 
-export default class Home extends Component{
-    constructor(props){
+export default class Home extends Component {
+    constructor(props) {
         super(props)
         this.state = {
             posts: [],
@@ -13,8 +13,8 @@ export default class Home extends Component{
         }
     }
 
-    componentDidMount(){
-        auth.onAuthStateChanged((user) => { 
+    componentDidMount() {
+        auth.onAuthStateChanged((user) => {
             if (!user) {
                 this.props.navigation.navigate("Login")
             }
@@ -40,21 +40,27 @@ export default class Home extends Component{
     }
 
 
-    render(){
-        return(
-            <View>
-                <Text>Home</Text>
-
-                {!this.state.loading && (
-                    <FlatList 
-                    data={this.state.posts}
-                    keyExtractor={(post) => post.id}
-                    renderItem={({ item }) => <Post item={item} /> }
-                    />
-                )}
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>Home</Text>
+                <View style={styles.postContainer1}>
+                    {!this.state.loading && (
+                        <FlatList
+                            data={this.state.posts}
+                            keyExtractor={(post) => post.id}
+                            renderItem={({ item }) => (
+                                <View style={styles.postContainer2}>
+                                    <Post item={item} />
+                                </View>
+                            )}
+                        />
+                    )}
+                </View>
             </View>
         )
     }
 
 }
 
+// PEGAR ACÁ CÓDIGO CSS + ctrl derecho --> dar formato al texto

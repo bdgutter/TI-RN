@@ -2,6 +2,7 @@
 // import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 // import { auth, db } from '../firebase/config';
 // import firebase from "firebase";
+// import AntDesign from '@expo/vector-icons/AntDesign';
 
 // export default class Post extends Component{
 //     constructor(props){
@@ -49,22 +50,29 @@
 //         const createdAt = new Date(posts.data.createdAt).toLocaleDateString()
 
 //         return(
-//             <View>
-//                 <Text>Posteos</Text>
-//                 <Text>Usuario: {posts.data.owner}</Text>
-//                 <Text>Descripcion: {posts.data.text}</Text>
-//                 {like ? (
-//                     <TouchableOpacity onPress={() => this.handleLike()}>
-//                         <Text>Me gusta</Text>
-//                     </TouchableOpacity>
-//                 ) : (
-//                     <TouchableOpacity onPress={() => this.handleNotLike()}>
-//                         <Text>No me gusta mas</Text>
-//                     </TouchableOpacity>
-//                 )}
-//                 <Text>Cantidad de Likes: {cantidadLikes}</Text>
-//                 <Text>Fecha de Publicacion: {createdAt}</Text> 
+//             <View style={styles.container}>
+                
+//                 <Text style={styles.text}>Usuario: {posts.data ? posts.data.owner : 'Desconocido'}</Text>
+//                 <Text style={styles.text}>Descripción: {posts.data ? posts.data.text : 'Sin descripción'}</Text>
+//                 <Text style={styles.text}>Fecha de publicación: {createdAt}</Text>
+
+//                 <View style={styles.likes}>
+//                     {like ? (
+//                         <TouchableOpacity onPress={() => this.handleNotLike()}>
+//                             <AntDesign name="dislike1" size={18} color="black" />
+//                         </TouchableOpacity>
+//                     ) : (
+//                         <TouchableOpacity onPress={() => this.handleLike()}>
+//                             <AntDesign name="like1" size={18} color="black" />
+//                         </TouchableOpacity>
+//                     )}
+//                     <Text style={styles.text}>Cantidad de likes: {cantidadLikes}</Text>
+//                 </View>
+
 //             </View>
-//         )
+// //         )
 //     }
 // }
+
+
+// PEGAR ACÁ CÓDIGO CSS + ctrl derecho --> dar formato al texto

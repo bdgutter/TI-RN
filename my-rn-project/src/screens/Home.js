@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     postContainer1: {
+        flex: 1,
         flexDirection: 'row',
         width: '90%',
         borderWidth: 1.5,

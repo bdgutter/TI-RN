@@ -52,11 +52,10 @@ export class Profile extends Component {
             });
     };
 
-    handleDeletePost = () => {
-        const { posts } = this.state
+    handleDeletePost = (id) => {
 
         db.collection('posts')
-            .doc(posts.id).delete()
+            .doc(id).delete()
             .then(() => {
                 console.log('se eliminó el post')
             })

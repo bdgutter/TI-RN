@@ -14,14 +14,7 @@ export default class Post extends Component{
         }
     }
 
-    componentDidMount(){
-        auth.onAuthStateChanged((user) => { 
-            if (!user) {
-                this.props.navigation.navigate("Login")
-            }
-        })
-    }
-
+ 
 handleLike(){
     db.collection("posts")
         .doc(this.props.posts.id)
@@ -90,6 +83,7 @@ const styles = StyleSheet.create({
     likes: {
         flexDirection: 'row',
         alignItems: 'center',
+
     },
     field: {
         border: "1.5px solid black",

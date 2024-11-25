@@ -81,7 +81,7 @@ export class Profile extends Component {
             <View style={styles.container}>
                 <Text style={styles.title}>Perfil de usuario</Text>
                 <View style={styles.infoContainer}>
-                    <View style={styles.infoLines1}><FontAwesome name="user" size={20} color="black" /> <Text style={styles.infoText}>Nombre de usuario: {this.state.userName}</Text></View>
+                    <View style={styles.infoLines1}><FontAwesome name="user" size={20} color="black" /> <Text style={styles.infoText1}>Nombre de usuario: {this.state.userName}</Text></View>
                     <View style={styles.infoLines}><Ionicons name="mail" size={20} color="black" /> <Text style={styles.infoText}>Email: {this.state.email}</Text></View>
                     <View style={styles.infoLines}><MaterialCommunityIcons name="image-frame" size={20} color="black" /> <Text style={styles.infoText}>Cantidad de posteos: {this.state.posts.length}</Text></View>
                 </View>
@@ -92,7 +92,7 @@ export class Profile extends Component {
 
                 <View style={styles.postContainer1}>
                     {this.state.posts.length === 0 ? (
-                        <Text style={styles.postContainer2}>No hay post publicados</Text>
+                        <Text style={styles.noPostContainer}>No hay post publicados</Text>
                     ) : (
                         <FlatList
                             data={this.state.posts}
@@ -149,6 +149,7 @@ const styles = StyleSheet.create({
     },
     postContainer1: { 
         flex: 1,
+        justifyContent: 'center',
         width: '90%',                
         borderWidth: 1.5,
         borderRadius: 10,
@@ -170,7 +171,22 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 5,
         alignItems: 'center', 
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 15
+    },
+    noPostContainer: {
+        marginHorizontal: 5,
+        padding: 15,
+        paddingHorizontal: 30,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 3, height: 5 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        textAlign: 'center',
+        alignSelf: 'center',
+        fontSize: 15
     },
     button: {
         backgroundColor: '#ffa155',
@@ -205,6 +221,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'black',
         marginHorizontal: 20
+    },
+    infoText1: {
+        fontSize: 16,
+        color: 'black',
+        marginHorizontal: 20,
+        paddingLeft: 4
     },
     errorMsg: {
         color: 'red',

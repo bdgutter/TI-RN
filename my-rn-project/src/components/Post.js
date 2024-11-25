@@ -67,7 +67,7 @@ handleNotLike(){
                             <AntDesign name="like1" size={18} color="black" />
                         </TouchableOpacity>
                     )}
-                    <Text style={styles.text}>Cantidad de likes: {cantidadLikes}</Text>
+                    <Text style={styles.textLikes}>Cantidad de likes: {cantidadLikes}</Text>
                 </View>
             </View>
         )
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     likes: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
     },
     field: {
         border: "1.5px solid black",
@@ -120,6 +119,13 @@ const styles = StyleSheet.create({
     text: {
         color: 'black',
         marginBottom: 8, 
+        fontSize: 16,
+        flexWrap: 'wrap'
+    },
+    textLikes: {
+        color: 'black',
+        marginBottom: 8, 
+        marginLeft: 5,
         fontSize: 16,
         flexWrap: 'wrap'
     },

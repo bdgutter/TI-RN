@@ -121,10 +121,6 @@ export class Profile extends Component {
                                     </TouchableOpacity>
                                 </View>
                             )}
-
-                            numColumns={3}
-                            columnWrapperStyle={styles.columnWrapperStyle} 
-                            
                         />
                     )}
                 </View>
@@ -166,23 +162,17 @@ const styles = StyleSheet.create({
         paddingLeft: 3,
         paddingVertical: 3
     },
-    postContainer1: {
-        flexDirection: 'row',              
-        justifyContent: 'space-between',    
-        flexWrap: 'wrap',                  
-        width: '100%',                     
+    postContainer1: { 
+        width: '90%',                
         borderWidth: 1.5,
         borderRadius: 10,
         borderColor: 'black',
-        paddingVertical: 15,
+        paddingVertical: 25,
         paddingHorizontal: 25,
         backgroundColor: '#ffb662',
         marginTop: 20,
     },
     postContainer2: {
-        flex: 1,
-        width: '45%', 
-        marginTop: 10,
         marginBottom: 20,
         marginHorizontal: 5,
         padding: 15,
@@ -193,12 +183,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 3, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    columnWrapperStyle: {
-        justifyContent: 'space-between',  
-        marginHorizontal: -5, 
+        alignItems: 'center'
     },
     button: {
         backgroundColor: '#ffa155',

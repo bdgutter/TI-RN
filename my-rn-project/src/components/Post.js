@@ -4,8 +4,8 @@ import { auth, db } from '../firebase/config';
 import firebase from "firebase";
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default class Post extends Component{
-    constructor(props){
+export default class Post extends Component {
+    constructor(props) {
         super(props)
         this.state = {
             posts: this.props.posts,
@@ -14,48 +14,48 @@ export default class Post extends Component{
         }
     }
 
- 
-handleLike(){
-    db.collection("posts")
-        .doc(this.props.posts.id)
-        .update({
-           likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
-        })
-    .then(() => this.setState({
-        like: true,
-        cantidadLikes: this.props.posts.data.likes.length
-    }))
-}
 
-handleNotLike(){
-    db.collection("posts")
-      .doc(this.props.posts.id)
-      .update({
-            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
-        })
-    .then(() => this.setState({
-        like: false,
-        cantidadLikes: this.props.posts.data.likes.length
-    }))
-}
+    handleLike() {
+        db.collection("posts")
+            .doc(this.props.posts.id)
+            .update({
+                likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+            })
+            .then(() => this.setState({
+                like: true,
+                cantidadLikes: this.props.posts.data.likes.length
+            }))
+    }
+
+    handleNotLike() {
+        db.collection("posts")
+            .doc(this.props.posts.id)
+            .update({
+                likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
+            })
+            .then(() => this.setState({
+                like: false,
+                cantidadLikes: this.props.posts.data.likes.length
+            }))
+    }
 
 
-    render(){
-        const {posts, like, cantidadLikes} = this.state
+    render() {
+        const { posts, like, cantidadLikes } = this.state
         const createdAt = new Date(posts.data.createdAt).toLocaleDateString()
-        
-        return(
-           <View style={styles.container}>
+
+        return (
+            <View style={styles.container}>
                 <Text style={styles.text}>Usuario: {posts.data ? posts.data.owner : 'Desconocido'}</Text>
                 <Text style={styles.text}>Descripción: {posts.data ? posts.data.text : 'Sin descripción'}</Text>
                 <Text style={styles.text}>Fecha de publicación: {createdAt}</Text>
-            
+
                 <View style={styles.likes}>
                     {like ? (
                         <TouchableOpacity onPress={() => this.handleNotLike()}>
                             <AntDesign name="dislike1" size={18} color="black" />
                         </TouchableOpacity>
-                        ) : (
+                    ) : (
                         <TouchableOpacity onPress={() => this.handleLike()}>
                             <AntDesign name="like1" size={18} color="black" />
                         </TouchableOpacity>
@@ -70,7 +70,7 @@ handleNotLike(){
 
 const styles = StyleSheet.create({
     postContainer: {
-        flex: 1, 
+        flex: 1,
         backgroundColor: 'white',
         padding: 16,
         marginBottom: 16,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     likes: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'baseline'
 
     },
     field: {
@@ -112,13 +112,13 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'black',
-        marginBottom: 8, 
+        marginBottom: 8,
         fontSize: 16,
         flexWrap: 'wrap'
     },
     textLikes: {
         color: 'black',
-        marginBottom: 8, 
+        marginBottom: 8,
         marginLeft: 5,
         fontSize: 16,
         flexWrap: 'wrap'

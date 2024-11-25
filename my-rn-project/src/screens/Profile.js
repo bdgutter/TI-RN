@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { db, auth } from '../firebase/config';
 import Post from '../components/Post';
-import firebase from 'firebase';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -147,10 +146,10 @@ const styles = StyleSheet.create({
         paddingLeft: 3,
         paddingVertical: 3
     },
-    postContainer1: { 
+    postContainer1: {
         flex: 1,
         justifyContent: 'center',
-        width: '90%',                
+        width: '90%',
         borderWidth: 1.5,
         borderRadius: 10,
         borderColor: 'black',
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 3, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        alignItems: 'center', 
+        alignItems: 'center',
         textAlign: 'center',
         fontSize: 15
     },

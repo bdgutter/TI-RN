@@ -42,7 +42,7 @@ export default class Register extends Component {
                 this.props.navigation.navigate("Login")
             })
             .catch((error) => {
-                if (!email.includes("@")) { 
+                if (!email.includes("@")) {
                     this.setState({ error: "Email mal escrito" });
                 } else if (password.length < 6) {
                     this.setState({ error: "La contraseña debe tener mínimo 6 caracteres" })
@@ -85,12 +85,12 @@ export default class Register extends Component {
 
                 {error ? <Text style={styles.error}>{error}</Text> : null}
 
-                {formOk ? 
-                <TouchableOpacity onPress={() => this.register()} style={styles.button}>
-                    <Text style={styles.texto}>Registrarme</Text>
-                </TouchableOpacity>
-                : null}
-            
+                {formOk ?
+                    <TouchableOpacity onPress={() => this.register()} style={styles.button}>
+                        <Text style={styles.texto}>Registrarme</Text>
+                    </TouchableOpacity>
+                    : null}
+
                 <TouchableOpacity onPress={() => this.props.navigation.navigate("Login")} style={styles.button}>
                     <Text style={styles.texto}>Ya tengo cuenta</Text>
                 </TouchableOpacity>

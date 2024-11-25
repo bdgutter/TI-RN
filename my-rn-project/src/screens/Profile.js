@@ -121,6 +121,10 @@ export class Profile extends Component {
                                     </TouchableOpacity>
                                 </View>
                             )}
+
+                            numColumns={3}
+                            columnWrapperStyle={styles.columnWrapperStyle} 
+                            
                         />
                     )}
                 </View>
@@ -131,6 +135,7 @@ export class Profile extends Component {
 }
 
 export default Profile;
+
 
 const styles = StyleSheet.create({
     container: {
@@ -144,7 +149,7 @@ const styles = StyleSheet.create({
         alignItems: 'baseline',
         padding: 15,
         paddingHorizontal: 30,
-        width: '100%',
+        width: '90%',
         backgroundColor: '#ffb662',
         borderWidth: 1.5,
         borderRadius: 10,
@@ -162,14 +167,21 @@ const styles = StyleSheet.create({
         paddingVertical: 3
     },
     postContainer1: {
+        flexDirection: 'row',              
+        justifyContent: 'space-between',    
+        flexWrap: 'wrap',                  
+        width: '90%',                     
         borderWidth: 1.5,
         borderRadius: 10,
         borderColor: 'black',
-        paddingHorizontal: 10,
-        backgroundColor: '#ffb662'
+        paddingVertical: 15,
+        paddingHorizontal: 25,
+        backgroundColor: '#ffb662',
+        marginTop: 20,
     },
     postContainer2: {
-        marginTop: 20,
+        width: '30%', 
+        marginTop: 10,
         marginBottom: 20,
         marginHorizontal: 5,
         padding: 15,
@@ -180,6 +192,10 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 3, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 5,
+    },
+    columnWrapperStyle: {
+        justifyContent: 'space-between',  
+        marginHorizontal: -5, 
     },
     button: {
         backgroundColor: '#ffa155',
@@ -222,4 +238,3 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     }
 })
-        // ffb662,ffbe73,ffca8d | ff9962

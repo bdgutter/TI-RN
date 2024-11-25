@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     },
     postContainer1: {
         flexDirection: 'row',
-        width: '100%',
+        width: '90%',
         borderWidth: 1.5,
         borderRadius: 10,
         borderColor: 'black',

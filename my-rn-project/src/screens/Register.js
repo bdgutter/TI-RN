@@ -25,6 +25,10 @@ export default class Register extends Component {
     register() {
         const { email, userName, password } = this.state;
 
+        if (!email || !userName || !password) {
+            this.setState({ error: 'Complete todos los campos' })
+        }
+
         auth.createUserWithEmailAndPassword(email, password)
             .then(() => {
                 return db.collection("users").add({
@@ -38,9 +42,7 @@ export default class Register extends Component {
                 this.props.navigation.navigate("Login")
             })
             .catch((error) => {
-                if (!email || !userName || !password) {
-                    this.setState({ error: 'Complete todos los campos' })
-                } else if (!email.includes("@")) { //CHEQUEAR --> permite crear cuentas con mails mal escritos. ej: @gmai.com
+                if (!email.includes("@")) { 
                     this.setState({ error: "Email mal escrito" });
                 } else if (password.length < 6) {
                     this.setState({ error: "La contraseña debe tener mínimo 6 caracteres" })
@@ -52,7 +54,8 @@ export default class Register extends Component {
 
     render() {
         const { email, userName, password, error } = this.state;
-        // const formCompleto = email === "" || password === "" || userName === "";
+
+        const formOk = email && userName && password;
 
         return (
             <View style={styles.container}>
@@ -82,10 +85,12 @@ export default class Register extends Component {
 
                 {error ? <Text style={styles.error}>{error}</Text> : null}
 
+                {formOk ? 
                 <TouchableOpacity onPress={() => this.register()} style={styles.button}>
                     <Text style={styles.texto}>Registrarme</Text>
                 </TouchableOpacity>
-
+                : null}
+            
                 <TouchableOpacity onPress={() => this.props.navigation.navigate("Login")} style={styles.button}>
                     <Text style={styles.texto}>Ya tengo cuenta</Text>
                 </TouchableOpacity>
